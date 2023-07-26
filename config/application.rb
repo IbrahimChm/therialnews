@@ -1,7 +1,10 @@
 require_relative "boot"
 
 require "rails/all"
-
+config.before_configuration do
+  figaro = Figaro::Application.new(environment: Rails.env, path: 'config/application.yml')
+  figaro.load
+end
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
